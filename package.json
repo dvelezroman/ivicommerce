@@ -2,10 +2,10 @@
   "name": "ivicommerce",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
-    "start": "webpack serve",
-    "build": "webpack --mode=production"
+    "start": "webpack serve --mode development --open --hot",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,11 @@
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.0.2",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.3",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.2.2",
     "compression-webpack-plugin": "^7.1.2",
     "css-loader": "^5.2.4",
@@ -33,6 +38,7 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "typescript": "^4.2.4"
   }
 }

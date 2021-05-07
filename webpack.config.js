@@ -6,11 +6,11 @@ const svgToMiniDataURI = require('mini-svg-data-uri');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, "index.js"),
+  entry: "./src/index.tsx",
   mode: process.env.NODE_ENV || "development",
   resolve: {
     modules: [path.resolve(__dirname), "node_modules"],
-    extensions: ["", ".js", ".jsx", ".ts", ".tsx"]
+    extensions: [ '.tsx', '.ts', '.js' ],
   },
   devServer: {
     contentBase: path.join(__dirname),
@@ -31,9 +31,10 @@ module.exports = {
         },
       },
       {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: ["ts-loader"],
+        test: /\.tsx?$/,
+        use: {
+          loader: 'awesome-typescript-loader'
+        }
       },
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
@@ -71,11 +72,6 @@ module.exports = {
             loader: 'css-loader',
           },
         ],
-      },
-      {
-        test: /\.js$/,
-        enforce: "pre",
-        use: ["source-map-loader"],
       },
     ],
   },
