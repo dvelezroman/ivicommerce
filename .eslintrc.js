@@ -20,6 +20,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -44,6 +45,10 @@ module.exports = {
       files: ['**/*.tsx'],
       rules: {
         'react/prop-types': 'off',
+        'no-unused-vars': ['off'],
+        'no-undef': ['off'],
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
       },
     },
   ],

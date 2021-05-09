@@ -1,31 +1,32 @@
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/value.svg'
 import './header.styles.scss'
-import React from 'react'
+import React, { useState } from 'react'
 import CartIcon from '../CartIcon'
 import CartDropdown from '../CartDropdown'
+import HeaderContext from '../../context/HeaderContext'
 
-interface HeaderProps {
-  hidden: boolean
-}
+const Header = (): JSX.Element => {
+  const [cartDropDownHidden, setCartDropDownHidden] = useState<boolean>(true)
 
-const Header: React.FC<HeaderProps> = ({ hidden }): JSX.Element => {
   return (
-    <div className="header">
-      <Link to="/">
-        <img src={Logo} className="logo" />
-      </Link>
-      <div className="options">
-        <Link className="option" to="/shop">
-          SHOP
+    <HeaderContext.Provider value={{ cartDropDownHidden, setCartDropDownHidden }}>
+      <div className="header">
+        <Link to="/">
+          <img src={Logo} className="logo" />
         </Link>
-        <Link className="option" to="">
-          CONTACT
-        </Link>
-        <CartIcon />
+        <div className="options">
+          <Link className="option" to="/shop">
+            SHOP
+          </Link>
+          <Link className="option" to="">
+            CONTACT
+          </Link>
+          <CartIcon />
+        </div>
+        <CartDropdown />
       </div>
-      {hidden ? null : <CartDropdown />}
-    </div>
+    </HeaderContext.Provider>
   )
 }
 

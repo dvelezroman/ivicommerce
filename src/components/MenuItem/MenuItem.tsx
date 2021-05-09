@@ -1,31 +1,27 @@
 import './menu-item.styles.scss'
 
-import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { RouteComponentProps, useHistory, withRouter } from 'react-router-dom'
 
 import React from 'react'
+import { GetCollections_collections_items } from '../../gql/types/GetCollections'
 
-type IProps = {
-  title: string
-  imageUrl: string
-  size?: string
-  linkUrl: string
-}
-
-const MenuItem: React.FC<RouteComponentProps & IProps> = ({
-  title,
-  imageUrl,
-  size,
-  history,
-  linkUrl,
+const MenuItem: React.FC<RouteComponentProps & GetCollections_collections_items> = ({
+  id,
+  name,
+  assets,
   match,
-}) => (
-  <div className={`${size} menu-item`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
-    <div className="bg-image" style={{ backgroundImage: `url(${imageUrl})` }} />
-    <div className="content">
-      <h1 className="title">{title}</h1>
-      <span className="subtitle">shop now</span>
+}) => {
+  const history = useHistory()
+
+  return (
+    <div className={`menu-item`} onClick={() => history.push(`${match.url}?collection=${id}`)}>
+      <div className="bg-image" style={{ backgroundImage: `url(${assets[0].source})` }} />
+      <div className="content">
+        <h1 className="title">{name}</h1>
+        <span className="subtitle">shop now</span>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default withRouter(MenuItem)
