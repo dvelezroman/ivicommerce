@@ -5,7 +5,7 @@ import ProductDescription from '../../components/ProductDescription'
 const Product: React.FC<RouteComponentProps> = ({ match }) => {
   return (
     <div className="Product-page">
-      <Route path={`${match.path}/:sku`} component={ProductDescription} />
+      <Route path={`${match.path}/:productId`} component={ProductDescription} />
     </div>
   )
 }

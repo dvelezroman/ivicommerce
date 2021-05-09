@@ -21,7 +21,7 @@ const CollectionItem: React.FC<ICollectionItem> = ({ item }) => {
         <span className="name">{productName}</span>
         <span className="price">100</span>
       </div>
-      <CustomButton inverted onClick={() => history.push(`/product/${item.sku}`)}>
+      <CustomButton inverted onClick={() => history.push(`/product/${item.productId}`)}>
         See Details
       </CustomButton>
     </div>

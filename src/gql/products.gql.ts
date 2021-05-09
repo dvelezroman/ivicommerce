@@ -43,6 +43,7 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
         sku
         slug
         productName
+        productId
         currencyCode
         description
         score
@@ -52,6 +53,22 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
         }
       }
       totalItems
+    }
+  }
+`
+
+export const GET_PRODUCT = gql`
+  query GetProduct($id: ID!) {
+    product(id: $id) {
+      name
+      slug
+      description
+      assets {
+        source
+        id
+        width
+        preview
+      }
     }
   }
 `

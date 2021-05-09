@@ -20,6 +20,7 @@ export interface GetProductsByCategory_search_items {
   sku: string;
   slug: string;
   productName: string;
+  productId: string;
   currencyCode: CurrencyCode;
   description: string;
   /**

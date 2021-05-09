@@ -5,11 +5,11 @@ import Header from './components/Header'
 
 import ErrorBoundary from './components/ErrorBoundary'
 import MainContext from './context/MainContext'
-import Product from './pages/product'
 
 const HomePage = lazy(() => import('./pages/homepage'))
 const ShopPage = lazy(() => import('./pages/shop'))
 const Checkout = lazy(() => import('./pages/checkout'))
+const Product = lazy(() => import('./pages/product'))
 
 const App = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false)
