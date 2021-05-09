@@ -1,4 +1,9 @@
 {
+  "exclude": [
+    "./node_modules/*",
+    "public",
+    "vendor"
+  ],
   "compilerOptions": {
     "target": "es5",                          
     "module": "commonjs",                     
@@ -14,6 +19,13 @@
     "strict": true,              
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
   },
- "include": ["./src/**/*"]
+ "include": ["./src/**/*", "src/types/custom.d.ts"]
 }
