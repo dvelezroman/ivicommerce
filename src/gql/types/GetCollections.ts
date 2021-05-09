@@ -18,6 +18,7 @@ export interface GetCollections_collections_items {
   __typename: "Collection";
   id: string;
   name: string;
+  slug: string;
   assets: GetCollections_collections_items_assets[];
 }
 

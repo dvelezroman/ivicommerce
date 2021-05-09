@@ -6,6 +6,7 @@ export const GET_COLLECTIONS = gql`
       items {
         id
         name
+        slug
         assets {
           source
           id

@@ -1,26 +1,48 @@
-import React from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import './collection.styles.scss'
 
 import CollectionItem from '../../components/CollectionItem'
-import { Item } from '../../components/CartItem/CartItem'
+import { useParams } from 'react-router'
+import useProducts from '../../hooks/useProducts'
+import MainContext from '../../context/MainContext'
+import Spinner from '../../components/Spinner'
+import { GetProductsByCategory_search_items } from '../../gql/types/GetProductsByCategory'
 
-interface Collection {
-  title: string
-  items: Array<Item>
+interface ParamTypes {
+  collectionSlug: string
 }
 
-interface CollectionProps {
-  collection: Collection
-}
+const CollectionComponent = () => {
+  const { loading, setLoading } = useContext(MainContext)
 
-const CollectionComponent: React.FC<CollectionProps> = ({ collection }) => {
-  const { title, items } = collection
+  const { collectionSlug } = useParams<ParamTypes>()
+
+  const { getProductsByCategoryResponse, setCollectionSlug } = useProducts()
+
+  useEffect(() => {
+    setCollectionSlug(collectionSlug)
+  }, [setCollectionSlug])
+
+  const getCollectionItems = useMemo(() => {
+    const { data } = getProductsByCategoryResponse
+    if (data) {
+      return data.search.items
+    }
+    return []
+  }, [getProductsByCategoryResponse])
+
+  useEffect(() => {
+    const { loading } = getProductsByCategoryResponse
+    setLoading(loading)
+  }, [getProductsByCategoryResponse])
+
   return (
     <div className="collection-page">
-      <h2 className="title">{title}</h2>
+      {loading && <Spinner />}
+      <h2 className="title">{collectionSlug.toUpperCase()}</h2>
       <div className="items">
-        {items.map(item => (
-          <CollectionItem key={item.id} item={item} addItem={console.log} />
+        {getCollectionItems.map((item: GetProductsByCategory_search_items) => (
+          <CollectionItem key={item.sku} item={item} />
         ))}
       </div>
     </div>

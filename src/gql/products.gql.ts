@@ -35,3 +35,23 @@ export const GET_PRODUCTS = gql`
     }
   }
 `
+
+export const GET_PRODUCTS_BY_CATEGORY = gql`
+  query GetProductsByCategory($collectionSlug: String!) {
+    search(input: { collectionSlug: $collectionSlug }) {
+      items {
+        sku
+        slug
+        productName
+        currencyCode
+        description
+        score
+        productAsset {
+          id
+          preview
+        }
+      }
+      totalItems
+    }
+  }
+`

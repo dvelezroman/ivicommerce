@@ -5,6 +5,7 @@ import Header from './components/Header'
 
 import ErrorBoundary from './components/ErrorBoundary'
 import MainContext from './context/MainContext'
+import Product from './pages/product'
 
 const HomePage = lazy(() => import('./pages/homepage'))
 const ShopPage = lazy(() => import('./pages/shop'))
@@ -24,6 +25,7 @@ const App = (): JSX.Element => {
                 <Route exact path="/" component={HomePage} />
                 <Route path="/shop" component={ShopPage} />
                 <Route path="/checkout" component={Checkout} />
+                <Route path="/product" component={Product} />
               </MainContext.Provider>
             </Suspense>
           </ErrorBoundary>
