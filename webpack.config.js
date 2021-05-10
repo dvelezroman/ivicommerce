@@ -14,7 +14,8 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname),
+    historyApiFallback: true,
+    contentBase: './',
     open: true,
     hot: true,
   },
