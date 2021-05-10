@@ -15,7 +15,10 @@ const MenuItem: React.FC<RouteComponentProps & GetCollections_collections_items>
 
   return (
     <div className={`menu-item`} onClick={() => history.push(`${match.url}shop/${slug}`)}>
-      <div className="bg-image" style={{ backgroundImage: `url(${assets[0].source})` }} />
+      <div
+        className="bg-image"
+        style={{ backgroundImage: assets[0] ? `url(${assets[0]?.source})` : 'none' }}
+      />
       <div className="content">
         <h1 className="title">{name}</h1>
         <span className="subtitle">shop now</span>

@@ -13,7 +13,6 @@ interface IHomePage extends IMainContext {}
 const HomePage: React.FC<IHomePage> = (): JSX.Element => {
   const { loading, setLoading } = useContext<IMainContext>(MainContext)
 
-  // const { data: dataProducts, loading: fetchingProducts }: UseProductsReturn = useProducts()
   const {
     data: dataCollections,
     loading: fetchingCollections,

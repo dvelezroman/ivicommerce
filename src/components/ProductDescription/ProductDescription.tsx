@@ -3,9 +3,13 @@ import React, { useContext, useEffect, useMemo } from 'react'
 import useProduct, { IQueryResponse } from '../../hooks/useProduct'
 import MainContext from '../../context/MainContext'
 import Spinner from '../Spinner'
+import CartContext from '../../context/CartContext'
+import { GetProduct_product } from '../../gql/types/GetProduct'
+import { AlertType } from '../Alert/Alert'
 
 const ProductDescription = () => {
-  const { loading, setLoading } = useContext(MainContext)
+  const { loading, setLoading, doShowAlert } = useContext(MainContext)
+  const { addItem } = useContext(CartContext)
 
   const { getProductResponse } = useProduct()
 
@@ -31,7 +35,14 @@ const ProductDescription = () => {
         <p className="price">$19.99</p>
         <p>{product?.description}</p>
         <p>
-          <button>Add to Cart</button>
+          <button
+            onClick={() => {
+              addItem(product as GetProduct_product)
+              doShowAlert('Product added to cart...!', AlertType.SUCCESS)
+            }}
+          >
+            Add to Cart
+          </button>
         </p>
       </div>
     </>

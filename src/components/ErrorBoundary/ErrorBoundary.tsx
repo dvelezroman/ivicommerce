@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 interface StateFromError {
   hasErrored: boolean
@@ -19,7 +20,14 @@ class ErrorBoundary extends React.Component {
 
   render(): ReactNode {
     if (this.state.hasErrored) {
-      return <div>Something went wrong!</div>
+      return (
+        <div className="error">
+          <div className="msg">Something went wrong!</div>
+          <Link className="option" to="/">
+            Return to Home
+          </Link>
+        </div>
+      )
     }
     return this.props.children
   }

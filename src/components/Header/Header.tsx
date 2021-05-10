@@ -1,28 +1,31 @@
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/value.svg'
 import './header.styles.scss'
-import React, { useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import CartIcon from '../CartIcon'
 import CartDropdown from '../CartDropdown'
 import HeaderContext from '../../context/HeaderContext'
+import CartContext from '../../context/CartContext'
 
 const Header = (): JSX.Element => {
+  const { qty } = useContext(CartContext)
+
   const [cartDropDownHidden, setCartDropDownHidden] = useState<boolean>(true)
+
+  const onClickCartIcon = useCallback(() => {
+    setCartDropDownHidden(!cartDropDownHidden)
+  }, [cartDropDownHidden, setCartDropDownHidden])
 
   return (
     <HeaderContext.Provider value={{ cartDropDownHidden, setCartDropDownHidden }}>
       <div className="header">
         <Link to="/">
-          <img src={Logo} className="logo" />
+          <h3 className="logo">Ivi Commerce</h3>
         </Link>
         <div className="options">
-          <Link className="option" to="/shop">
+          <Link className="option" to="/">
             SHOP
           </Link>
-          <Link className="option" to="">
-            CONTACT
-          </Link>
-          <CartIcon />
+          <CartIcon qty={qty} onClick={onClickCartIcon} />
         </div>
         <CartDropdown />
       </div>

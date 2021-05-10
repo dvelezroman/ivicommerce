@@ -62,6 +62,7 @@ export const GET_PRODUCT = gql`
     product(id: $id) {
       name
       slug
+      id
       description
       assets {
         source

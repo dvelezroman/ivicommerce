@@ -1,0 +1,18 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .msg {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+  }
+
+  .option {
+    display: flex;
+    justify-content: center;
+    background-color: #dfdfdf;
+    color: red;
+  }
+}

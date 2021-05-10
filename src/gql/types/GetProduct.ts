@@ -19,6 +19,7 @@ export interface GetProduct_product {
   __typename: 'Product'
   name: string
   slug: string
+  id: string
   description: string
   assets: GetProduct_product_assets[]
 }
